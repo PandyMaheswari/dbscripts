@@ -1,0 +1,17 @@
+Create table if not exists Parent_Task(Parent_ID int(10) primary key, Parent_Task varchar(200));
+Insert into Parent_Task values(01,"Analysis");
+Insert into Parent_Task values(02,"ClassDiagram");
+Insert into Parent_Task values(03,"Architecture");
+
+Create table if not exists Task(Task_ID int(10) primary key, Parent_ID int(10), Task_Id int(10), Task varchar(200), Start_Date Date, End_Date Date, Priority int(2), Status tinyint(1), foreign key(Parent_ID) references Parent_Task(Parent_ID),foreign key(Task_ID) references Task(Task_ID));
+Insert into Task values(01,01,01,"Coding","2019-09-10","2019-09-30",10,0);
+Insert into Task values(02,01,01,"UnitTesting","2019-01-10","2019-01-11",10,0);
+
+create table if not exists Project(Project_ID int(10) primary key,Project varchar(100),Start_Date Date, End_Date Date, Priority int(2));
+Insert into Project values(01,"SPA Project","2019-03-01","2019-01-11",10);
+Insert into Project values(02,"Bootstrap Project","2019-03-20","2019-04-03",10);
+
+Create table if not exists Users(User_ID int(10) primary key, FirstName varchar(100), LastName varchar(100), Employee_ID int(10), Project_ID int(10), Task_ID int(10), foreign key(Project_ID) references Project(Project_ID),foreign key(Task_ID) references Task(Task_ID));
+Insert into Users(User_ID,FirstName,LastName,Employee_ID) values(01,"Krupa","Padmanaban",1000);
+Insert into Users(User_ID,FirstName,LastName,Employee_ID) values(02,"Anitha","Grace",1000);
+
